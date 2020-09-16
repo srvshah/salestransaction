@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SalesTransaction.Application.Service.Account;
 
 namespace SalesTransaction.Application.WebApi
 {
@@ -25,6 +26,8 @@ namespace SalesTransaction.Application.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IAccountService, AccountService>();
+
             services.AddControllers();
         }
 
@@ -41,6 +44,8 @@ namespace SalesTransaction.Application.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
