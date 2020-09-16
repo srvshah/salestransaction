@@ -54,7 +54,7 @@ namespace SalesTransaction.Application.DataAccess
 
             if(dataTable.Rows[0] != null && dataTable.Rows[0]["Json"].ToString() != null)
             {
-                return JsonConvert.DeserializeObject(dataTable.Rows[0].ToString());
+                return JsonConvert.DeserializeObject(dataTable.Rows[0]["Json"].ToString());
             }
             return null;
 
