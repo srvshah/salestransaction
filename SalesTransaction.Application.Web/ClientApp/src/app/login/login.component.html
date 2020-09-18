@@ -1,8 +1,5 @@
-<form action="">
-  <fieldset>
-    <legend>Login</legend>
-    <input type="text" name="" >
-    <input type="password" name="password">
-    <button>login</button>
-  </fieldset>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <input type="text" name="username" formControlName="username">
+  <input type="password" name="password" formControlName="password">
+  <button>Login</button>
 </form>
