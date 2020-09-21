@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
-import { LoginService } from './login.service';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../shared/material.module';
+import {LoginService} from './login.service'
+import { ReactiveFormsModule } from '@angular/forms';
 
-const routes: Routes= [
-  {path: '', component: LoginComponent}
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  }
 ]
 
 @NgModule({
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MaterialModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginComponent],
-  providers: [LoginService]
+  providers:[LoginService]
 })
 export class LoginModule { }

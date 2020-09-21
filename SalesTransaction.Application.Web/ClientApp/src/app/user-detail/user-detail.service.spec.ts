@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { UserDetailService } from './user-detail.service';
 
 describe('UserDetailService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: UserDetailService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(UserDetailService);
+  });
 
   it('should be created', () => {
-    const service: UserDetailService = TestBed.get(UserDetailService);
     expect(service).toBeTruthy();
   });
 });
