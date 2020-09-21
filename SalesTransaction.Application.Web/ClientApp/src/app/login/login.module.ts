@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: LoginComponent
   }
-]
+];
 
 @NgModule({
   declarations: [LoginComponent],
@@ -21,6 +21,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  providers:[LoginService]
+  providers: [LoginService]
 })
 export class LoginModule { }

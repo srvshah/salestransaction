@@ -1,16 +1,20 @@
-<form [formGroup]='loginForm' (ngSubmit)='login()'>
+<form [formGroup]='loginForm' (ngSubmit)='submitLogin()'>
+
+  <mat-error *ngIf="errorMessage">
+    {{errorMessage}}
+  </mat-error>
+  
+  <br>
   <mat-form-field>
-      <input matInput type="text" placeholder="Username" formControlName='username'>
+      <input matInput type="text" placeholder="Username*" formControlName='username'>
   </mat-form-field>
 
   <br>
-
   <mat-form-field>
-      <input matInput type="password" placeholder="Password" formControlName='password'>
+      <input matInput type="password" placeholder="Password*" formControlName='password'>
   </mat-form-field>
   
   <br>
-
   <button mat-raised-button color='primary'>Login</button>
                             
 </form>

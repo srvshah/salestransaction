@@ -16,6 +16,8 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 
@@ -37,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
 
   ]
 })
