@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
       this.login.password = this.password.value.trim();
 
       this.loginService.getLogin(this.login).subscribe(res => {
-        if (res){
+        if (res && res.personId){
           this.openSnackBar('Login Success!', 'success');
-          this.router.navigate(['/user-detail']);
+          this.router.navigate(['/user-detail', res.personId]);
         }
         else {
           this.errorMessage = this.errorMessageType.invLogin;

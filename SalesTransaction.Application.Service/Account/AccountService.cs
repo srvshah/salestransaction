@@ -24,7 +24,34 @@ namespace SalesTransaction.Application.Service.Account
                 _dah = new DataAccessHelper(_connStr);
             }
         }
- 
+
+        public dynamic GetAllUserDetail()
+        {
+            using (var conn = _dah.GetConnection())
+            {
+                using (var cmd = new SqlCommand("SpAllPersonDetailSel", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (reader.HasRows)
+                            {
+                                return _dah.GetJson(reader);
+                            }
+                            return null;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw ex;
+                        }
+                    }
+                }
+            }
+        }
+
         public dynamic GetLogin(MvLogin login)
         {
             using (var conn = _dah.GetConnection())

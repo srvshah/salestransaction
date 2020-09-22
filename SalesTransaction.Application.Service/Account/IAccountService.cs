@@ -9,5 +9,6 @@ namespace SalesTransaction.Application.Service.Account
     {
         dynamic GetLogin(MvLogin login);
         dynamic GetUserDetail(string json);
+        dynamic GetAllUserDetail();
     }
 }
