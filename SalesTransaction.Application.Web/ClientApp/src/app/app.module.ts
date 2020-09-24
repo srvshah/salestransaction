@@ -8,12 +8,14 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { MaterialModule } from './shared/material.module'
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserDetailComponent,
-    ProductComponent
+    ProductComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,

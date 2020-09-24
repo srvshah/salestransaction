@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{action}} customer</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]='custForm'>
+
+        <mat-form-field  class="full-width">
+            <input matInput type="text" placeholder="Name*" formControlName='firstName'>
+        </mat-form-field>
+        
+        <br>
+        <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Middle Name*" formControlName='middleName'  >
+        </mat-form-field>
+    
+        <mat-form-field  class="full-width">
+            <input matInput type="text" placeholder="Last Name*" formControlName='lastName' >
+        </mat-form-field>
+
+
+    </form>
+   
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)='cancelClick()'>Cancel</button>
+    <button mat-button (click)='submitForm()' [disabled]='!custForm.valid'>{{action}}</button>
+</div>
+
+

@@ -1,29 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SalesTransaction.Application.Model.Product;
-using SalesTransaction.Application.Service.Product;
+using SalesTransaction.Application.Model.Customer;
+using SalesTransaction.Application.Service.Customer;
 using SalesTransaction.Application.WebApi.Areas.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SalesTransaction.Application.WebApi.Areas.Product
+namespace SalesTransaction.Application.WebApi.Areas.Customer
 {
-    public class ProductController : BaseController
+    public class CustomerController : BaseController
     {
-        private readonly IProductService _productService;
+        private readonly ICustomerService _customerService;
 
-        public ProductController(IProductService productService)
+        public CustomerController(ICustomerService customerService)
         {
-            _productService = productService;
+            _customerService = customerService;
         }
 
         [HttpGet]
-        public IActionResult AllProducts()
+        public IActionResult GetAllCustomers()
         {
             try
             {
-                var jsonString = _productService.GetAllProducts();
+                var jsonString = _customerService.GetAllCustomers();
                 return Ok(jsonString);
 
             }
@@ -33,8 +33,9 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
             }
         }
 
+
         [HttpPost]
-        public IActionResult AddProduct([FromBody] MvAddProduct product)
+        public IActionResult AddCustomer([FromBody] MvAddCustomer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -42,7 +43,7 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
             }
             try
             {
-                var added = _productService.AddProduct(product);
+                var added = _customerService.AddCustomer(customer);
                 if (!added)
                 {
                     return BadRequest();
@@ -59,7 +60,7 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
         }
 
         [HttpPut]
-        public IActionResult UpdateProduct([FromBody] MvUpdateProduct product)
+        public IActionResult UpdateCustomer([FromBody] MvUpdateCustomer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -67,7 +68,7 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
             }
             try
             {
-                var updated = _productService.UpdateProduct(product);
+                var updated = _customerService.UpdateCustomer(customer);
                 if (!updated)
                 {
                     return BadRequest();
@@ -80,6 +81,5 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
                 throw;
             }
         }
-
     }
 }
