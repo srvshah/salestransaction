@@ -13,16 +13,21 @@ namespace SalesTransaction.Application.Service.Account
 {
     public class AccountService : IAccountService
     {
+        private readonly IConfiguration _configuration;
         private readonly string _connStr;
+        private readonly string _commandTimeout;
         private DataAccessHelper _dah;
 
         public AccountService(IConfiguration configuration)
         {
-            _connStr = configuration.GetConnectionString("DefaultConnection");
-            if(!string.IsNullOrEmpty(_connStr))
+            _configuration = configuration.GetSection("ConnectionStrings");
+            _connStr = _configuration["DefaultConnection"];
+            if (!string.IsNullOrEmpty(_connStr))
             {
                 _dah = new DataAccessHelper(_connStr);
             }
+
+            _commandTimeout = _configuration["CommandTimeOut"];
         }
 
         public dynamic GetAllUserDetail()
@@ -32,6 +37,7 @@ namespace SalesTransaction.Application.Service.Account
                 using (var cmd = new SqlCommand("SpAllPersonDetailSel", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = int.Parse(_commandTimeout);
                     using (var reader = cmd.ExecuteReader())
                     {
                         try
@@ -61,6 +67,7 @@ namespace SalesTransaction.Application.Service.Account
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@Username", login.Username));
                     cmd.Parameters.Add(new SqlParameter("@Password", login.Password));
+                    cmd.CommandTimeout = int.Parse(_commandTimeout);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -92,7 +99,7 @@ namespace SalesTransaction.Application.Service.Account
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@Json", jsonNew.ToString()));
-                  
+                    cmd.CommandTimeout = int.Parse(_commandTimeout);
 
                     using (var reader = cmd.ExecuteReader())
                     {

@@ -13,9 +13,9 @@ import { MatListModule } from '@angular/material/list'
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSelectModule} from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
@@ -23,25 +23,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   exports: [
-    MatSelectModule,
     MatDialogModule,
-    MatCardModule,
     MatButtonModule,
-    MatFormFieldModule,
     MatInputModule,
-    MatIconModule,
-    MatToolbarModule,
-    TextFieldModule,
-    MatProgressSpinnerModule,
-    MatSidenavModule,
-    MatListModule,
-    MatSliderModule,
     MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatRadioModule,
     MatSnackBarModule
-
   ]
 })
 export class MaterialModule { }

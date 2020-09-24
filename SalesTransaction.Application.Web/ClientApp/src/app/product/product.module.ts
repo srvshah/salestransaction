@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from './product.service';
-import { MaterialModule } from './../shared/material.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './product.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { MaterialModule } from '../shared/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path: '', component: ProductComponent}
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [ProductFormComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes)
   ],

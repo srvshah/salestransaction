@@ -13,4 +13,12 @@ export class ProductService {
   getAllProducts(): Observable<any>{
     return this.api.get('/product/allproducts');
   }
+
+  addProduct(json: any): Observable<any>{
+    return this.api.post('/product/addproduct', json);
+  }
+
+  updateProduct(json: any): Observable<any>{
+    return this.api.put('/product/updateproduct', json);
+  }
 }

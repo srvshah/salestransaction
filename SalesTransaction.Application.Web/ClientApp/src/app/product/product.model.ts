@@ -2,6 +2,9 @@ export interface MvProduct{
     productId: number;
     name: string;
     description: string;
-    rate: string;
+    stock: number;
+    rate?: number;
+    startDate?: Date;
+    endDate?: Date;
 }
 
