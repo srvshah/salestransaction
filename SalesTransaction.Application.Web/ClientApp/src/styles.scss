@@ -5,10 +5,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .full-width{ width: 100%; display: block;}
 
 .mat-row.hovered {
-    background: #eee;
-  }
+  background: #eee;
+}
   
-  .mat-row.highlighted {
-    background: #999;
-  }
+.mat-row.highlighted {
+  background: #999;
+}
+
+  
+.warning{
+  background-color: yellow !important;
+  color: #fff !important;
+}
+
+.success{
+  background-color: green !important;
+  color: #fff !important;
+}
   

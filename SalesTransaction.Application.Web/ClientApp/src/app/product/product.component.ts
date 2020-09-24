@@ -4,6 +4,7 @@ import {MvProduct} from './product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { SelectionModel } from '@angular/cdk/collections';
+import {UtilityService} from './../../core/services/utility.service';
 
 @Component({
   selector: 'app-product',
@@ -19,7 +20,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private us: UtilityService
   ) {
   }
 
@@ -51,7 +53,7 @@ export class ProductComponent implements OnInit {
 
   openDialog(action: string): void{
     if (action === 'Edit' && !this.selection.hasValue()){
-      alert('select a product before editing');
+      this.us.openSnackBar('Select a product before editing', 'warning');
       return;
     }
     const dialogRef = this.dialog.open(ProductFormComponent, {
@@ -64,16 +66,15 @@ export class ProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(product => {
       if (product){
-        console.log(product)
         if (action === 'Edit'){
           this.productService.updateProduct(product).subscribe(res => {
             this.getAllProducts();
-            alert('product updated');
-          })
+            this.us.openSnackBar('Product Updated', 'success');
+          });
         }
         this.productService.addProduct(product).subscribe(res => {
           this.getAllProducts();
-          alert('product added');
+          this.us.openSnackBar('Product Added', 'success');
         }, err => console.log(err));
 
       }

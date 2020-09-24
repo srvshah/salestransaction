@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { MvLogin } from './login.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import {UtilityService} from './../../core/services/utility.service';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private us: UtilityService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
       this.loginService.getLogin(this.login).subscribe(res => {
         if (res && res.personId){
-          this.openSnackBar('Login Success!', 'success');
+          this.us.openSnackBar('Logged in success', 'success');
           this.router.navigate(['/user-detail', res.personId]);
         }
         else {
@@ -62,12 +62,5 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  openSnackBar(message: string, action: string): any {
-    this.snackbar.open(message, 'close', {
-      duration: 3000, // in milli-seconds
-      panelClass: [action],
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-    });
-  }
+ 
 }
