@@ -9,13 +9,15 @@ import { MaterialModule } from './shared/material.module'
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { CustomerComponent } from './customer/customer.component';
+import { SalesComponent } from './sales/sales.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserDetailComponent,
     ProductComponent,
-    CustomerComponent
+    CustomerComponent,
+    SalesComponent
   ],
   imports: [
     BrowserModule,

@@ -72,11 +72,12 @@ export class ProductComponent implements OnInit {
             this.us.openSnackBar('Product Updated', 'success');
           });
         }
-        this.productService.addProduct(product).subscribe(res => {
-          this.getAllProducts();
-          this.us.openSnackBar('Product Added', 'success');
-        }, err => console.log(err));
-
+        else {
+          this.productService.addProduct(product).subscribe(res => {
+            this.getAllProducts();
+            this.us.openSnackBar('Product Added', 'success');
+          }, err => console.log(err));
+        }
       }
     });
   }

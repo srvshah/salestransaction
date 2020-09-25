@@ -63,19 +63,18 @@ export class CustomerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(customer => {
       if (customer){
-        console.log(customer)
-
         if (action === 'Edit'){
           this.cs.updateCustomer(customer).subscribe(res => {
             this.getCustomers();
             this.us.openSnackBar('Customer Updated', 'success');
           });
         }
-        this.cs.addCustomer(customer).subscribe(res => {
-          this.getCustomers();
-          this.us.openSnackBar('Customer Added', 'success');
-        }, err => console.log(err));
-
+        else {
+          this.cs.addCustomer(customer).subscribe(res => {
+            this.getCustomers();
+            this.us.openSnackBar('Customer Added', 'success');
+          }, err => console.log(err));
+        }
       }
     });
   }
