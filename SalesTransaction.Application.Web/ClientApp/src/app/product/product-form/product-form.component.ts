@@ -28,25 +28,21 @@ export class ProductFormComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.prodCreateForm = this.fb.group({
-      name: [this.product.name, Validators.required],
-      description: [this.product.description, Validators.required],
-      stock: [this.product.stock, Validators.required],
-      rate: [this.product.rate, Validators.required],
-      startDate: [this.product.startDate, Validators.required],
-      endDate: [this.product.endDate, Validators.required]
-    });
-
-    this.prodEditForm = this.fb.group({
-      name: [this.product.name, Validators.required],
-      description: [this.product.description, Validators.required],
-      stock: [this.product.stock, Validators.required]
-    });
-
     if (this.action === 'Add'){
-      this.prodForm = this.prodCreateForm;
+      this.prodForm = this.fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        stock: ['', Validators.required],
+        rate: ['', Validators.required],
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required]
+      });
     }else {
-      this.prodForm = this.prodEditForm;
+      this.prodForm = this.fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        stock: ['', Validators.required]
+      });
     }
   }
 
@@ -55,21 +51,6 @@ export class ProductFormComponent implements OnInit{
   }
 
   submitForm(): void {
-    if (this.action === 'Add'){
-      this.product.name = this.prodCreateForm.get('name').value.trim();
-      this.product.description = this.prodCreateForm.get('description').value.trim();
-      this.product.stock = this.prodCreateForm.get('stock').value;
-      this.product.rate = this.prodCreateForm.get('rate').value;
-      this.product.startDate = this.prodCreateForm.get('startDate').value;
-      this.product.endDate = this.prodCreateForm.get('endDate').value;
-    }
-    else if (this.action === 'Edit')
-    {
-      this.product.name = this.prodEditForm.get('name').value.trim();
-      this.product.description = this.prodEditForm.get('description').value.trim();
-      this.product.stock = this.prodEditForm.get('stock').value;
-    }
-
     this.dialogRef.close(this.product);
   }
 

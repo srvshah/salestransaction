@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { CustomerComponent } from './customer/customer.component';
 import { SalesComponent } from './sales/sales.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SalesComponent } from './sales/sales.component';
     UserDetailComponent,
     ProductComponent,
     CustomerComponent,
-    SalesComponent
+    SalesComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,

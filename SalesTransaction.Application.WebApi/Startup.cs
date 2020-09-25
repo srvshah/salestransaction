@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SalesTransaction.Application.Service.Account;
 using SalesTransaction.Application.Service.Customer;
+using SalesTransaction.Application.Service.Invoice;
 using SalesTransaction.Application.Service.Product;
 using SalesTransaction.Application.Service.Sales;
 
@@ -45,6 +46,7 @@ namespace SalesTransaction.Application.WebApi
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<ISalesService, SalesService>();
+            services.AddTransient<IInvoiceService, InvoiceService>();
 
             services.AddControllers().AddNewtonsoftJson();
         }

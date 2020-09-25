@@ -4,29 +4,29 @@
     <form [formGroup]='prodForm'>
 
         <mat-form-field  class="full-width">
-            <input matInput type="text" placeholder="Name*" formControlName='name'>
+            <input matInput type="text" placeholder="Name*" formControlName='name' [(ngModel)]="product.name">
         </mat-form-field>
         
         <br>
         <mat-form-field class="full-width">
-            <input matInput type="text" placeholder="Description*" formControlName='description'  >
+            <input matInput type="text" placeholder="Description*" formControlName='description' [(ngModel)]="product.description" >
         </mat-form-field>
     
         <mat-form-field  class="full-width">
-            <input matInput type="number" placeholder="Stock*" formControlName='stock' >
+            <input matInput type="number" placeholder="Stock*" formControlName='stock' [(ngModel)]="product.stock">
         </mat-form-field>
 
         <div *ngIf="action == 'Add'">
             <mat-form-field  class="full-width">
-                <input matInput type="date" placeholder="Start Date*" formControlName='startDate'>
+                <input matInput type="date" placeholder="Start Date*" formControlName='startDate' [(ngModel)]="product.startDate">
             </mat-form-field>
 
             <mat-form-field  class="full-width">
-                <input matInput type="date" placeholder="End Date*" formControlName='endDate' >
+                <input matInput type="date" placeholder="End Date*" formControlName='endDate' [(ngModel)]="product.endDate">
             </mat-form-field>
 
             <mat-form-field  class="full-width">
-                <input matInput type="number" placeholder="Rate*" formControlName='rate' >
+                <input matInput type="number" placeholder="Rate*" formControlName='rate' [(ngModel)]="product.rate">
             </mat-form-field>
         </div>
 
