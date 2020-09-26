@@ -1,11 +1,29 @@
 
 <button mat-raised-button (click)='addSales()' style="margin-right: 5px;">Create</button>
-<button mat-raised-button (click)='editSales()'>Edit</button>
+<button mat-raised-button (click)='editSales()'  style="margin-right: 5px;">Edit</button>
+<button mat-raised-button (click)='generateInvoice()'>Generate Invoice</button>
 <br>
 <br>
 
+
 <table mat-table [dataSource]='dataSource' class="mat-elevation-z8" width="100%">
    
+    <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selectionCheckBox.hasValue() && isAllSelected()"
+                    [indeterminate]="selectionCheckBox.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selectionCheckBox.toggle(row) : null"
+                    [checked]="selectionCheckBox.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
     <ng-container matColumnDef="salesTransactionId">
         <th mat-header-cell *matHeaderCellDef> Sales Id</th>
         <td mat-cell *matCellDef="let element"> {{element.salesTransactionId}} </td>

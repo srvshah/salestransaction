@@ -5,6 +5,7 @@ import { UtilityService } from 'src/core/services/utility.service';
 import { SalesService } from './sales.service';
 import { MvSale } from './sales.model';
 import { SalesFormComponent } from './sales-form/sales-form.component';
+import { InvoiceService } from '../invoice/invoice.service';
 
 @Component({
   selector: 'app-sales',
@@ -17,15 +18,18 @@ export class SalesComponent implements OnInit {
   dataSource: MvSale[] = [];
   selectedSale: MvSale = {} as MvSale;
   selection = new SelectionModel<MvSale>(false, []);
+  selectionCheckBox = new SelectionModel<MvSale>(true, []);
+
 
   constructor(
     private ss: SalesService,
     private dialog: MatDialog,
-    private us: UtilityService
+    private us: UtilityService,
+    private is: InvoiceService
   ) { }
 
   ngOnInit(): void {
-    this.displayedColumns = ['salesTransactionId', 'productName', 'customerName', 'quantity', 'rate', 'invoiceId', 'amount'];
+    this.displayedColumns = ['select', 'salesTransactionId', 'productName', 'customerName', 'quantity', 'rate', 'invoiceId', 'amount'];
     this.getAllSales();
   }
 
@@ -83,5 +87,57 @@ export class SalesComponent implements OnInit {
   onRowClicked(row: any): void{
     this.selectedSale = { ...row };
     this.selection.toggle(row);
+    this.selectionCheckBox.toggle(row);
+  }
+
+  isAllSelected(): boolean {
+    const numSelected = this.selectionCheckBox.selected.length;
+    const numRows = this.dataSource.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle(): void {
+    this.isAllSelected() ?
+        this.selectionCheckBox.clear() :
+        this.dataSource.forEach(row => this.selectionCheckBox.select(row));
+  }
+
+  generateInvoice(): void{
+    if (!this.selectionCheckBox.hasValue()){
+      this.us.openSnackBar('Select sales to generate invoice', 'warning');
+    }
+    else {
+      if (this.isInvoiced(this.selectionCheckBox.selected)){
+        this.us.openSnackBar('Cannot generate invoice for an invoiced sale', 'warning');
+      }
+      else if (!this.hasSameCustomer(this.selectionCheckBox.selected)){
+        this.us.openSnackBar('Please select sales with same customer', 'warning');
+      }
+      else {
+        this.is.generateInvoice(this.selectionCheckBox.selected).subscribe(res => {
+          this.us.openSnackBar('Invoice Generated', 'success');
+          this.getAllSales();
+        }, err => console.log(err));
+      }
+    }
+  }
+
+  hasSameCustomer(array): boolean {
+    const first = array[0];
+    return array.every((element) => {
+        return element.customerId === first.customerId;
+    });
+  }
+
+  isInvoiced(array): boolean{
+    let res = false;
+    array.forEach(item => {
+      if (item.invoiceId){
+        res = true;
+        return;
+      }
+    });
+    return res;
   }
 }

@@ -8,3 +8,11 @@ export interface MvInvoice{
     invoiceNumber: string;
     transactionCount: number;
 }
+
+export interface MvInvoiceDetail{
+    salesTransactionId: number;
+    total: number;
+    rate: number;
+    productName: string;
+    quantity: number;
+}

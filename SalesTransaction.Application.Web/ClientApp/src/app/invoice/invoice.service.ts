@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WebApiService } from 'src/core/services/web-api.service';
@@ -11,5 +12,13 @@ export class InvoiceService {
 
   getAllInvoice(): Observable<any>{
     return this.api.get('/invoice/getallinvoice');
+  }
+
+  generateInvoice(json: any): Observable<any>{
+    return this.api.post('/invoice/generateinvoice', json);
+  }
+
+  getInvoiceDetail(json: any): Observable<any> {
+    return this.api.get('/invoice/getinvoicedetail', new HttpParams().set('invoiceId', JSON.stringify(json)));
   }
 }

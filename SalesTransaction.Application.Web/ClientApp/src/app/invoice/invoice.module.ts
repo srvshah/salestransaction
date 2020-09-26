@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { InvoiceComponent } from './invoice.component';
 import { MaterialModule } from '../shared/material.module';
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [InvoiceDetailComponent],
   imports: [
     CommonModule,
     MaterialModule,
