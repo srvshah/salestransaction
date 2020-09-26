@@ -15,6 +15,5 @@ namespace SalesTransaction.Application.Model.Invoice
     {
         [Required]
         public int invoiceId { get; set; }
-        public string customerName { get; set; }
     }
 }
