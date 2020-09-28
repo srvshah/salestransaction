@@ -10,7 +10,6 @@ import { MvInvoice, MvInvoiceDetail } from '../invoice.model';
 export class InvoiceDetailComponent implements OnInit {
   invoiceDetail: MvInvoiceDetail[] = [];
   invoice: MvInvoice = {} as MvInvoice;
-  allTotal = 0;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
